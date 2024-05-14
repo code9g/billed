@@ -1,0 +1,11 @@
+{
+  "name": "projet9",
+  "version": "1.0.0",
+  "description": "Projet 9 de la formation \"Développeur JavaScript / React\" de OpenClassRoom",
+  "scripts": {
+    "back": "cd back && npm run run:dev",
+    "front": "cd front && live-server"
+  },
+  "author": "",
+  "license": "ISC"
+}
