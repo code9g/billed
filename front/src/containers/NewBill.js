@@ -26,10 +26,14 @@ export default class NewBill {
     new Logout({ document, localStorage, onNavigate });
   }
   static fileValidate(file) {
-    return (
-      FILE_MIMES.includes(file.type.toLowerCase()) &&
-      FILE_EXTENSIONS.includes(file.name.split(".").pop().toLowerCase())
-    );
+    if (FILE_MIMES.includes(file.type.toLowerCase())) {
+      const splitted = file.name.split(".");
+      return (
+        splitted.length > 1 &&
+        FILE_EXTENSIONS.includes(splitted.pop().toLowerCase())
+      );
+    }
+    return false;
   }
   handleChangeFile = (e) => {
     e.preventDefault();
