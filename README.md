@@ -52,6 +52,12 @@ et pour revenir à la dernière version :
 nvm use latest
 ```
 
+ou la dernière version "stable" :
+
+```
+nvm use lts
+```
+
 ## Mise en place de la partie back
 
 Installez les dépendances :
