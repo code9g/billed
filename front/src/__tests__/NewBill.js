@@ -103,12 +103,12 @@ describe("Given I am connected as an employee", () => {
         },
       });
 
-      window.alert = jest.fn();
+      expect(window.alert).not.toHaveBeenCalled();
       expect(handleChangeFile).toHaveBeenCalled();
-      expect(newBill.formData).not.toBe(null);
       expect(file.files[0].name).toBe("image.jpg");
       expect(file.files[0].type).toBe("image/jpg");
-      expect(window.alert).not.toHaveBeenCalled();
+      expect(newBill.formData).not.toBe(null);
+      expect(newBill.isFileValid).toBe(true);
     });
   });
 
@@ -155,7 +155,8 @@ describe("Given I am connected as an employee", () => {
       expect(handleChangeFile).toHaveBeenCalled();
       expect(file.files[0].name).toBe("image.pdf");
       expect(file.files[0].type).toBe("file/pdf");
-      expect(newBill.pictureTypeValid).toBe(undefined);
+      expect(newBill.formData).toBe(null);
+      expect(newBill.isFileValid).toBe(false);
     });
   });
 
@@ -203,7 +204,7 @@ describe("Given I am connected as an employee", () => {
 
 describe("When I am connected as an Employee", () => {
   describe("Given I am on NewBill Page and I submit a new bill", () => {
-    test("Then it should create a new bill from API", async () => {
+    test("Then it should create a new bill from API (POST)", async () => {
       const postSpy = jest.spyOn(mockStore, "bills");
       const bill = {
         id: "47qAXb6fIm2zOKkLzMro",
