@@ -8,23 +8,29 @@ const FILE_ERROR_MESSAGE = `Le format du fichier doit être en .${FILE_EXTENSION
   0,
   -1
 ).join(", .")} ou .${FILE_EXTENSIONS[FILE_EXTENSIONS.length - 1]} !`;
-
 export default class NewBill {
   constructor({ document, onNavigate, store, localStorage }) {
     this.document = document;
     this.onNavigate = onNavigate;
     this.store = store;
+
     const formNewBill = this.document.querySelector(
       `form[data-testid="form-new-bill"]`
     );
     formNewBill.addEventListener("submit", this.handleSubmit);
+
     const file = this.document.querySelector(`input[data-testid="file"]`);
     file.addEventListener("change", this.handleChangeFile);
+
     this.fileUrl = null;
     this.fileName = null;
     this.billId = null;
+    this.isFileValid = false;
+    this.formData = null;
+
     new Logout({ document, localStorage, onNavigate });
   }
+
   static fileValidate(file) {
     if (FILE_MIMES.includes(file.type.toLowerCase())) {
       const splitted = file.name.split(".");
@@ -35,34 +41,26 @@ export default class NewBill {
     }
     return false;
   }
+
+  //----------bug 3-- [Bug Hunt] - Bills------------
   handleChangeFile = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    if (NewBill.fileValidate(file)) {
-      const formData = new FormData();
+    this.isFileValid = NewBill.fileValidate(file);
+    if (this.isFileValid) {
       const email = JSON.parse(localStorage.getItem("user")).email;
+      const formData = new FormData();
       formData.append("file", file);
       formData.append("email", email);
-
-      this.store
-        .bills()
-        .create({
-          data: formData,
-          headers: {
-            noContentType: true,
-          },
-        })
-        .then(({ fileUrl, key }) => {
-          this.billId = key;
-          this.fileUrl = fileUrl;
-          this.fileName = file.name;
-        })
-        .catch((error) => console.error(error));
+      this.formData = formData;
+      this.fileName = file.name;
     } else {
+      this.formData = null;
       e.target.value = "";
       alert(FILE_ERROR_MESSAGE);
     }
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(
@@ -88,11 +86,30 @@ export default class NewBill {
       fileName: this.fileName,
       status: "pending",
     };
-    this.updateBill(bill);
-    this.onNavigate(ROUTES_PATH["Bills"]);
+
+    // Vérifie si l'image est valide avant de soumettre le formulaire
+    if (this.isFileValid) {
+      this.store
+        .bills()
+        .create({
+          data: this.formData,
+          headers: {
+            noContentType: true,
+          },
+        })
+        .then(({ fileUrl, key }) => {
+          this.billId = key;
+          this.fileUrl = fileUrl;
+        })
+        .then(() => {
+          this.updateBill(bill);
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   // not need to cover this function by tests
+  /* istanbul ignore next */
   updateBill = (bill) => {
     if (this.store) {
       this.store
