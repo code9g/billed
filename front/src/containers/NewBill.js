@@ -8,6 +8,7 @@ const FILE_ERROR_MESSAGE = `Le format du fichier doit être en .${FILE_EXTENSION
   0,
   -1
 ).join(", .")} ou .${FILE_EXTENSIONS[FILE_EXTENSIONS.length - 1]} !`;
+
 export default class NewBill {
   constructor({ document, onNavigate, store, localStorage }) {
     this.document = document;
@@ -42,7 +43,6 @@ export default class NewBill {
     return false;
   }
 
-  //----------bug 3-- [Bug Hunt] - Bills------------
   handleChangeFile = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
@@ -87,7 +87,6 @@ export default class NewBill {
       status: "pending",
     };
 
-    // Vérifie si l'image est valide avant de soumettre le formulaire
     if (this.isFileValid) {
       this.store
         .bills()
