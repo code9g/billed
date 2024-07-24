@@ -192,7 +192,7 @@ describe("Given I am connected as an employee", () => {
       newBill.fileName = "preview-facture-free-201801-pdf-1.jpg";
       newBill.fileUrl =
         "https://test.storage.tld/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=4df6ed2c-12c8-42a2-b013-346c1346f732";
-      newBill.validImage = true;
+      newBill.isFileValid = true;
 
       const form = screen.getByTestId("form-new-bill");
       form.addEventListener("submit", handleSubmit);
