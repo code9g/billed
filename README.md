@@ -7,7 +7,9 @@
 ![Babel](https://img.shields.io/badge/babel-f5da55?style=for-the-badge)
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 
-Projet 9 de la formation "Développeur JavaScript / React" de OpenClassRoom
+Projet 9 du parcours "**Développeur d'application - JavaScript React**" chez [OpenClassroom](https://openclassrooms.com/fr/).
+
+Débuggez et testez un SaaS RH
 
 ![Billed admin](./images/admin.png)
 
