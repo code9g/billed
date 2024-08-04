@@ -1,6 +1,19 @@
 # Billed
 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![Babel](https://img.shields.io/badge/babel-f5da55?style=for-the-badge)
+![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+
 Projet 9 de la formation "Développeur JavaScript / React" de OpenClassRoom
+
+![Billed admin](./images/admin.png)
+
+## Description
+
+Vous êtes développeur front-end chez Billed, une entreprise qui produit des solutions Saas destinées aux équipes de ressources humaine.
 
 ## Utilisez une version de node compatible
 
@@ -111,3 +124,6 @@ Mot de passe : admin
 Utilisateur : employee@company.tld
 Mot de passe : employee
 ```
+
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](<[http://](https://github.com/code9g/)>)
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-andre-henry/)
